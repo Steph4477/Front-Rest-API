@@ -10,7 +10,7 @@ Convention de nommage :
  fonction du même nom que le fichier ex :
 
   ``` Typescript
-  export function getAllPokemon () {
+  export function getAllPokemons () {
     ...
   }
 

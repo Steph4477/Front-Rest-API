@@ -1,9 +1,9 @@
 import './style.css'
-import typescriptLogo from './typescript.svg'
-import viteLogo from '/vite.svg'
-import { setupCounter } from './counter.ts'
+//import typescriptLogo from './typescript.svg'
+//import viteLogo from '/vite.svg'
+//import { setupCounter } from './counter.ts'
 
-document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
+/*document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
   <div>
     <a href="https://vitejs.dev" target="_blank">
       <img src="${viteLogo}" class="logo" alt="Vite logo" />
@@ -21,4 +21,30 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
   </div>
 `
 
-setupCounter(document.querySelector<HTMLButtonElement>('#counter')!)
+setupCounter(document.querySelector<HTMLButtonElement>('#counter')!)*/
+const appElement = document.getElementById('app');
+
+if (appElement) {
+  const ulElement = document.createElement('ul');
+  appElement.appendChild(ulElement);
+
+  async function fetchPokemonList() {
+    try {
+      const response = await fetch('https://pokeapi.co/api/v2/pokemon');
+      const data = await response.json();
+
+      const pokemonList = data.results;
+
+      pokemonList.forEach((pokemon: any) => {
+        const liElement = document.createElement('li');
+        liElement.textContent = pokemon.name;
+        ulElement.appendChild(liElement);
+      });
+    } catch (error) {
+      console.error('Erreur de connection ', error);
+    }
+  }
+
+  fetchPokemonList();
+}
+

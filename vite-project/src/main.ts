@@ -1,50 +1,23 @@
-import './style.css'
-//import typescriptLogo from './typescript.svg'
-//import viteLogo from '/vite.svg'
-//import { setupCounter } from './counter.ts'
+import { getPokemonById } from './api/getPokemonById';
 
-/*document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="${viteLogo}" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://www.typescriptlang.org/" target="_blank">
-      <img src="${typescriptLogo}" class="logo vanilla" alt="TypeScript logo" />
-    </a>
-    <h1>Vite + TypeScript</h1>
-    <div class="card">
-      <button id="counter" type="button"></button>
-    </div>
-    <p class="read-the-docs">
-      Click on the Vite and TypeScript logos to learn more
-    </p>
-  </div>
-`
-
-setupCounter(document.querySelector<HTMLButtonElement>('#counter')!)*/
 const appElement = document.getElementById('app');
 
 if (appElement) {
   const ulElement = document.createElement('ul');
   appElement.appendChild(ulElement);
 
-  async function fetchPokemonList() {
-    try {
-      const response = await fetch('https://pokeapi.co/api/v2/pokemon');
-      const data = await response.json();
+  async function displayPokemon(id: number) {
+    const pokemon = await getPokemonById(id);
 
-      const pokemonList = data.results;
+    const liElement = document.createElement('li');
+    liElement.textContent = `Nom: ${pokemon.name}, Type: ${pokemon.type}, Attaque: ${pokemon.attack}, Défense: ${pokemon.defense}, Description: ${pokemon.description}`;
 
-      pokemonList.forEach((pokemon: any) => {
-        const liElement = document.createElement('li');
-        liElement.textContent = pokemon.name;
-        ulElement.appendChild(liElement);
-      });
-    } catch (error) {
-      console.error('Erreur de connection ', error);
-    }
+    const imgElement = document.createElement('img');
+    imgElement.src = pokemon.image;
+    liElement.appendChild(imgElement);
+
+    ulElement.appendChild(liElement);
   }
 
-  fetchPokemonList();
+  displayPokemon(2);
 }
-

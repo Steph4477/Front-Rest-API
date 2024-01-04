@@ -2,7 +2,7 @@
   "include": [
     "src",
     "src/api/utils.ts", 
-    "src/api/controller/getAllPokemons.ts" 
+    "src/api/getAllPokemons.ts" 
   ],
   
   "compilerOptions": {

@@ -7,6 +7,20 @@ export interface Pokemon {
   image: string;
 }
 
+export async function getPokemonByColor(color: string): Promise<Pokemon[]> {
+  const response = await fetch(`https://pokeapi.co/api/v2/pokemon-color/${color}`);
+  const data = await response.json();
+
+  const pokemonList: Pokemon[] = [];
+
+  for (const pokemon of data.pokemon_species) {
+    const pokemonData = await getPokemonById(pokemon.url.split('/').slice(-2, -1)[0]);
+    pokemonList.push(pokemonData);
+  }
+
+  return pokemonList;
+}
+
 export async function getPokemonById(id: number): Promise<Pokemon> {
   const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
   const data = await response.json();

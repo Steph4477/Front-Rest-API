@@ -1,0 +1,28 @@
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+#app {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+#body-bloc {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  
+}
+
+#filters-bloc {
+  display: flex;
+  flex-direction: column;
+}
+
+#poke-bloc {
+  display: flex;
+  flex-direction: column;
+}

@@ -1,8 +1,14 @@
+// PokemonCard.ts
 function capitalizeFirstLetter(str: string) {
     return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
 export function createPokemonCard(pokemonDetail: any) {
+    if (!pokemonDetail || !pokemonDetail.sprites || !pokemonDetail.sprites.front_default) {
+        console.error(`Error: Pokemon data is missing for ${pokemonDetail?.name}`);
+        return;
+    }
+
     const card = document.createElement('article');
     card.className = 'pokemon-card';
 

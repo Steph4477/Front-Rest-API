@@ -1,5 +1,5 @@
 // pages/main.ts
-import { getAllPokemons } from './api/controller/getAllPokemons';
+import { getAllPokemons } from './api/getAllPokemons';
 
 const cartDom = document.getElementById('app');
 

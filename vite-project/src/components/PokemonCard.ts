@@ -24,6 +24,10 @@ export async function createPokemonCard(pokemon: any) {
     name.textContent = capitalizeFirstLetter(pokemonDetail.name);
     card.appendChild(name);
 
+    const id = document.createElement('span');
+    id.textContent = `ID: ${pokemonDetail.id}`;
+    card.appendChild(id);
+
     const image = document.createElement('img');
     image.src = pokemonDetail.sprites.front_default;
     image.alt = 'Image du Pokémon ' + capitalizeFirstLetter(pokemonDetail.name);

@@ -1,3 +1,5 @@
+import { fetchData } from './utils.ts';
+
 export interface Pokemon {
   name: string;
   type: string;
@@ -8,8 +10,8 @@ export interface Pokemon {
 }
 
 export async function getPokemonById(id: number): Promise<Pokemon> {
-  const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
-  const data = await response.json();
+  const url = `https://pokeapi.co/api/v2/pokemon/${id}`;
+  const data = await fetchData(url);
 
   const pokemon: Pokemon = {
     name: data.name,

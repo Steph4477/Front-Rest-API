@@ -1,4 +1,4 @@
-import { getColors } from '../api/getPokemonsByFilters.ts';
+import { getColors } from '../api/getPokemonsByColor.ts';
 
 export async function displayColorsFilters(element: HTMLElement) {
     try {

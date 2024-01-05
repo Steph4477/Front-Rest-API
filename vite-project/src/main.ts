@@ -1,23 +1,10 @@
-import { getAPIContent } from './api/getAPIcontent.ts'
+//import { getAPIContent } from './api/getAPIcontent.ts'
 //import { getPokemonsByColor } from './api/getPokemonsByFilters'
+//import { getShapes} from './api/getPokemonsByShape.ts'
+import { displayListPokemons } from './components/displayListPokemons.ts';
 import { router } from './routes.ts'
 
-getAPIContent();
+//getAPIContent();
+//getShapes();
 router();
-
-// pages/main.ts
-/*import { getAllPokemons } from './api/getAllPokemons';
-
-const cartDom = document.getElementById('app');
-
-if (cartDom) {
-  async function fetchDataAndRender() {
-    try {
-      await getAllPokemons();
-    } catch (error) {
-      console.error('Error fetching Pokemons list', error);
-    }
-  }
-
-  fetchDataAndRender();
-}*/
+displayListPokemons();

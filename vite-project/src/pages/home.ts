@@ -1,7 +1,8 @@
 import './home.css';
 
 import { getAPIContent } from '../api/getAPIcontent.ts';
-import { getAllPokemons } from '../api/getAllPokemons.ts';
+
+//import { getAllPokemons } from '../api/getAllPokemons.ts';
 //import { getPokemonsByColor } from '../api/getPokemonsByFilters';
 import { displayColorsFilters } from '../components/displayColorsFilter.ts'
 
@@ -30,29 +31,33 @@ export function homeContent(): string {
   return content;
 }
 
-  // Attente du chargement du DOM
-  document.addEventListener('DOMContentLoaded', () => {
-    const colorElement = document.querySelector<HTMLButtonElement>('#color');
-    const cartDom = document.getElementById('poke-bloc');
+  
+document.addEventListener('DOMContentLoaded', () => {
+  const colorElement = document.querySelector<HTMLButtonElement>('#color');
+  //const cartDom = document.getElementById('poke-bloc');
 
-    if (colorElement) {
-      // Une fois que l'élément est présent dans le DOM, appelez getPokemonsByColor
-      displayColorsFilters(colorElement);
-    } else {
-      console.error("L'élément avec l'ID 'color' n'a pas été trouvé.");
-    }
-
-    if (cartDom) {
-      async function fetchDataAndRender() {
-        try {
-          await getAllPokemons();
-        } catch (error) {
-          console.error('Error fetching Pokemons list', error);
-        }
+  if (colorElement) {
+    // Une fois que l'élément est présent dans le DOM, appelez getPokemonsByColor
+    displayColorsFilters(colorElement);
+  } else {
+    console.error("L'élément avec l'ID 'color' n'a pas été trouvé.");
+  }
+/*
+  if (cartDom) {
+    async function fetchDataAndRender() {
+      try {
+        await getAllPokemons();
+        // Exécutez getAPIContent() ici si nécessaire
+        // getAPIContent();
+      } catch (error) {
+        console.error('Error fetching Pokemons list', error);
       }
-      fetchDataAndRender();
     }
-  });
+    fetchDataAndRender();
+  } else {
+    console.error("L'élément avec l'ID 'poke-bloc' n'a pas été trouvé.");
+  }*/
+});
   
   getAPIContent();
-  getAllPokemons();
+  //getAllPokemons();

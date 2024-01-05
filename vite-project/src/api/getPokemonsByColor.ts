@@ -30,6 +30,7 @@ export async function getPokemonsByColor(color: string): Promise<Pokemon[]> {
 
     for (const pokemon of data.pokemon_species) {
       const pokemonData = await getPokemonById(pokemon.url.split('/').slice(-2, -1)[0]);
+      console.log(pokemonData);
       pokemonList.push(pokemonData);
     }
 

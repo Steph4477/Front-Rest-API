@@ -8,7 +8,7 @@ import { createPagination } from '../components/Pagination';
 export function home() {
   const content = `
     <div id="app">
-    <h1>Pokedex</h1>
+    <h1>POKEDEX</h1>
       <div id="body-bloc">
         <div id="filters">
           <div id="filters-bloc">

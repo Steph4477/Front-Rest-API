@@ -1,6 +1,6 @@
 import { getColors } from '../api/getPokemonsByColor.ts';
 
-export async function displayColorsFilters(element: HTMLElement) {
+export async function displayColorsFilter(element: HTMLElement) {
     try {
         const colors = await getColors();
 

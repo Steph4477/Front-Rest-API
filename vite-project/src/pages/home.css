@@ -9,6 +9,10 @@ body {
     margin: 0 auto;
     padding: 2rem;
   }
+
+  h1 {
+    text-align: center;
+  }
   
   #body-bloc {
     display: flex;

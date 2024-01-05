@@ -1,15 +1,22 @@
-// home.ts
+import './home.css';
 import { getAllPokemons } from '../api/getAllPokemons';
 import { displayPage } from '../components/displayPage';
-import { displayColorsFilters } from '../components/displayColorsFilter';
+import { displayColorsFilter } from '../components/displayColorsFilter.ts';
+import { displayShapesFilter } from '../components/displayShapesFilter.ts';
 import { createPagination } from '../components/Pagination';
 
 export function home() {
   const content = `
     <div id="app">
+    <h1>Pokedex</h1>
       <div id="body-bloc">
-        <div id="filters-bloc">
-          <button id="color">Filtrer par couleur</button>
+        <div id="filters">
+          <div id="filters-bloc">
+            <button id="color">Filtrer par couleur</button>
+          </div>
+          <div id="filters-bloc">
+            <button id="shape">Filtrer par couleur</button>
+          </div>
         </div>
         <div id="poke-bloc">
           <div id="pagination-bloc"></div>
@@ -19,14 +26,18 @@ export function home() {
     </div>
   `;
 
-  // Wait for DOMContentLoaded
   document.addEventListener('DOMContentLoaded', async () => {
     const colorElement = document.querySelector<HTMLButtonElement>('#color');
+    const shapeElement = document.querySelector<HTMLButtonElement>('#shape');
     const cartDom = document.querySelector<HTMLDivElement>('.pokemonBloc');
     const paginationDom = document.querySelector<HTMLDivElement>('#pagination-bloc');
 
     if (colorElement) {
-      displayColorsFilters(colorElement);
+      displayColorsFilter(colorElement);
+    }
+
+    if (shapeElement) {
+      displayShapesFilter(shapeElement);
     }
 
     if (cartDom && paginationDom) {

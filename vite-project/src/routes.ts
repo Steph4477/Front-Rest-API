@@ -1,4 +1,4 @@
-import { homeContent } from './pages/home.ts';
+import { home } from './pages/home.ts';
 import { articlePokemon } from './pages/articlePokemon.ts';
 
 export async function router() {
@@ -7,7 +7,7 @@ export async function router() {
 
   if (appDiv) {
     if (path === '/home') {
-      appDiv.innerHTML = homeContent();
+      appDiv.innerHTML = home();
     } else if (path.startsWith('/pokemon/')) {
       const pokemonId = path.split('/').pop();
       if (pokemonId) {

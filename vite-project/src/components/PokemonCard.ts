@@ -21,9 +21,5 @@ export function createPokemonCard(pokemonDetail: any) {
     image.alt = 'Image du Pokémon ' + capitalizeFirstLetter(pokemonDetail.name);
     card.appendChild(image);
 
-    const description = document.createElement('p');
-    description.textContent = pokemonDetail.description;
-    card.appendChild(description);
-
     return card;
 }

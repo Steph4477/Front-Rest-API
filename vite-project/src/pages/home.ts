@@ -1,58 +1,33 @@
-import './home.css';
-
-import { getAPIContent } from '../api/getAPIcontent.ts';
-import { getAllPokemons } from '../api/getAllPokemons.ts';
-//import { getPokemonsByColor } from '../api/getPokemonsByFilters';
-import { displayColorsFilters } from '../components/displayColorsFilter.ts'
-
-export function homeContent(): string {
+import { displayColorsFilters } from '../components/displayColorsFilter';
+import { getAllPokemons } from '../api/getAllPokemons';
+export function home() {
   const content = `
-    <div>
-      <h1>Test filtres couleurs</h1>
-      <div id="body-bloc">
-        <div id="filters-bloc">
-          <div class="filter">
-            <p id="color"></p>
-          </div>
-          <div class="filter">
-            <p>filter 2</p>
-          </div>
-          <div class="filter">
-            <p>filter 3</p>
-          </div>
+  <div>
+      <div style="display: flex;">
+        <div style="width: 30%;">
+          <button id="color">Filtrer par couleur</button>
         </div>
-        <div id="poke-bloc">
-          <p class="pokemonBloc"></p>
+        <div style="width: 70%; display: flex; flex-wrap: wrap; justify-content: space-between;">
+          <div class="pokemonBloc">
+          </div>
         </div>
       </div>
     </div>
   `;
-  return content;
-}
 
   // Attente du chargement du DOM
   document.addEventListener('DOMContentLoaded', () => {
     const colorElement = document.querySelector<HTMLButtonElement>('#color');
-    const cartDom = document.getElementById('poke-bloc');
+    const cartDom = document.querySelector<HTMLDivElement>('.pokemonBloc');
 
     if (colorElement) {
-      // Une fois que l'élément est présent dans le DOM, appelez getPokemonsByColor
       displayColorsFilters(colorElement);
-    } else {
-      console.error("L'élément avec l'ID 'color' n'a pas été trouvé.");
     }
-
     if (cartDom) {
-      async function fetchDataAndRender() {
-        try {
-          await getAllPokemons();
-        } catch (error) {
-          console.error('Error fetching Pokemons list', error);
-        }
-      }
-      fetchDataAndRender();
+      getAllPokemons(); // Pass an array of HTMLButtonElement
     }
+    
   });
-  
-  getAPIContent();
-  getAllPokemons();
+
+  return content;
+}

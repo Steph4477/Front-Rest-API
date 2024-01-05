@@ -1,13 +1,19 @@
 import { createButton } from './Button';
+import { displayPage } from './displayPage';
 
-export function Pagination(onPrev: () => void, onNext: () => void) {
-  const container = document.createElement('div');
+export function createPagination(pokemons: any[], currentPage: number, cardsContainer: HTMLElement) {
+  // Create pagination buttons
+  const prevButton = createButton('prev-page', 'Précédent', () => {
+    if (currentPage > 1) {
+      currentPage--;
+      displayPage(currentPage, cardsContainer, pokemons);
+    }
+  });
 
-  const prevButton = createButton('prev-page', 'Précédent', onPrev);
-  const nextButton = createButton('next-page', 'Suivant', onNext);
+  const nextButton = createButton('next-page', 'Suivant', () => {
+    currentPage++;
+    displayPage(currentPage, cardsContainer, pokemons);
+  });
 
-  container.appendChild(prevButton);
-  container.appendChild(nextButton);
-
-  return container;
+  return [prevButton, nextButton];
 }

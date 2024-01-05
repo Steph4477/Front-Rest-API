@@ -19,7 +19,6 @@ export async function getPokemonById(id: number): Promise<Pokemon> {
     description: data.species.name,
     image: data.sprites.front_default,
   };
-
   return pokemon;
-
+  
 }

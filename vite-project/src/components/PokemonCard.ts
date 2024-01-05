@@ -1,11 +1,19 @@
 // PokemonCard.ts
+import { fetchData } from '../api/utils';
+
 function capitalizeFirstLetter(str: string) {
     return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
-export function createPokemonCard(pokemonDetail: any) {
-    if (!pokemonDetail || !pokemonDetail.sprites || !pokemonDetail.sprites.front_default) {
-        console.error(`Error: Pokemon data is missing for ${pokemonDetail?.name}`);
+export async function createPokemonCard(pokemon: any) {
+    if (!pokemon) {
+        console.error('Pokemon data is missing');
+        return;
+    }
+
+    const pokemonDetail = await fetchData(pokemon.url);
+    if (!pokemonDetail) {
+        console.error(`Pokemon data is missing for ${pokemon.name}`);
         return;
     }
 

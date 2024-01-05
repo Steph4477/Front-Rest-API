@@ -5,6 +5,7 @@ export interface Pokemon {
   defense: number;
   description: string;
   image: string;
+  color: string;
 }
 
 export async function getPokemonById(id: number): Promise<Pokemon> {

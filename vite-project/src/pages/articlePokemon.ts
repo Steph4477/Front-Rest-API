@@ -19,5 +19,5 @@ export async function articlePokemon(pokemonId: string) {
     }
 });
 
-  return content;
+   return content;
 }

@@ -1,4 +1,6 @@
-import { fetchData } from './utils';
+import { fetchData } from './utils.ts';
+import { getPokemonById } from './getPokemonById.ts';
+import { Pokemon } from './getPokemonById.ts';
 
 export async function getColors(): Promise<[]> {
 
@@ -19,6 +21,22 @@ export async function getColors(): Promise<[]> {
     return colors;
 }
 
+
+export async function getPokemonsByColor(color: string): Promise<Pokemon[]> {
+    const url = `https://pokeapi.co/api/v2/pokemon-color/${color}`;
+    const data = await fetchData(url);
+
+    const pokemonList: Pokemon[] = [];
+
+    for (const pokemon of data.pokemon_species) {
+      const pokemonData = await getPokemonById(pokemon.url.split('/').slice(-2, -1)[0]);
+      pokemonList.push(pokemonData);
+    }
+
+    return pokemonList;
+}
+
+/*
 export async function getPokemonsBySpecificColor(id: number): Promise<string[]> {
     const url = `https://pokeapi.co/api/v2/pokemon-color/${id}`;
     const apiData = await fetchData(url);
@@ -32,4 +50,4 @@ export async function getPokemonsBySpecificColor(id: number): Promise<string[]> 
     })
 
     return pokemonsColorArray;
-}
+}*/

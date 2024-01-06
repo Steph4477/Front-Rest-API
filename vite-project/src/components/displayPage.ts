@@ -1,7 +1,7 @@
 // displayPage.ts
 import { createPokemonCard } from './PokemonCard';
 
-const pageSize = 20;
+const pageSize = 16;
 
 export async function displayPage(page: number, container: HTMLElement, pokemons: any[]) {
     const startIndex = (page - 1) * pageSize;

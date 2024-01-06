@@ -1,8 +1,9 @@
+// Dans votre fichier TypeScript Pagination.ts
 import { createButton } from './Button';
 import { displayPage } from './displayPage';
 
-export function createPagination(pokemons: any[], currentPage: number, cardsContainer: HTMLElement) {
-  // Create pagination buttons
+export function createPagination(pokemons: any[], currentPage: number, cardsContainer: HTMLElement): HTMLElement {
+  // Crée les boutons de pagination
   const prevButton = createButton('prev-page', 'Précédent', () => {
     if (currentPage > 1) {
       currentPage--;
@@ -15,5 +16,13 @@ export function createPagination(pokemons: any[], currentPage: number, cardsCont
     displayPage(currentPage, cardsContainer, pokemons);
   });
 
-  return [prevButton, nextButton];
+  // Crée le conteneur de pagination
+  const paginationContainer = document.createElement('div');
+  paginationContainer.classList.add('pagination-container');
+
+  // Ajoute les boutons au conteneur
+  paginationContainer.appendChild(prevButton);
+  paginationContainer.appendChild(nextButton);
+
+  return paginationContainer;
 }

@@ -1,7 +1,7 @@
 
 // components/displayPage.ts 
 
-
+import { Pokemon } from '../api/getPokemonById.ts';
 import { createPokemonCard } from './PokemonCard';
 
 // Nombre de Pokémon affichés par page
@@ -13,7 +13,7 @@ const pageSize = 30;
  * @param {HTMLElement} container - L'élément HTML dans lequel afficher les cartes Pokémon.
  * @param {any[]} pokemons - La liste complète des Pokémon à paginer.
  */
-export async function displayPage(page: number, container: HTMLElement, pokemons: any[]) {
+export async function displayPage(page: number, container: HTMLElement, pokemons: Pokemon[]) {
     // Calcule l'indice de départ et l'indice de fin pour la pagination
     const startIndex = (page - 1) * pageSize;
     const endIndex = startIndex + pageSize;

@@ -1,12 +1,9 @@
-// home.ts
 import './home.css';
 import { getAllPokemons } from '../api/getAllPokemons';
-//import { getPokemonsByShape } from '../api/getPokemonsByShape.ts';
 import { displayPage } from '../components/displayPage';
 import { displayColorsFilter } from '../components/displayColorsFilter.ts';
 import { displayShapesFilter } from '../components/displayShapesFilter.ts';
-import { searchBar } from '../api/getPokemonByName';
-import { createPokemonCard } from '../components/PokemonCard';
+import { searchPokemon } from '../components/searchPokemon.ts';
 import { createPagination } from '../components/Pagination';
 
 export function home() {
@@ -44,7 +41,7 @@ export function home() {
     const cartDomShape = document.querySelector<HTMLDivElement>('.pokemonBlocFilterShape');
 
     const paginationDom = document.querySelector<HTMLDivElement>('#pagination-bloc');
-    const searchInput = document.querySelector<HTMLInputElement>('#search-input');
+    const searchInput = document.querySelector<HTMLElement>('#search-input');
 
     // Affichage des filtres de couleur et de forme
     if (colorElement) {
@@ -53,6 +50,10 @@ export function home() {
 
     if (shapeElement) {
       displayShapesFilter(shapeElement);
+    }
+
+    if (searchInput) {
+      searchPokemon(searchInput);
     }
 
     // Vérification des éléments du DOM
@@ -70,47 +71,6 @@ export function home() {
       // Création de la pagination
       const paginationContainer = createPagination(pokemons, 1, cartDom);
       paginationDom.appendChild(paginationContainer);
-
-
-      // Gestion de la recherche
-      if (searchInput) {
-        searchInput.addEventListener('input', async (event) => {
-          // Obtient le texte de recherche
-          const searchText = (event.target as HTMLInputElement).value;
-
-          if (searchText.length > 0) {
-            // Recherche des Pokémon correspondants au texte de recherche
-            const searchedPokemons = await searchBar(searchText);
-
-            if (searchedPokemons) {
-              // Vide le contenu du conteneur des Pokémon actuellement affichés
-              cartDom.innerHTML = '';
-
-              // Parcours les Pokémon trouvés et affiche leurs cartes
-              searchedPokemons.forEach(async (pokemon: any) => {
-                const card = await createPokemonCard(pokemon);
-                if (card) {
-                  // Ajoute la carte au conteneur des Pokémon
-                  cartDom.appendChild(card);
-                }
-              });
-
-              // Mise à jour de la pagination pour les résultats de la recherche
-              const searchPaginationContainer = createPagination(searchedPokemons, 1, cartDom);
-              paginationDom.innerHTML = ''; // Efface les boutons de pagination existants
-              paginationDom.appendChild(searchPaginationContainer);
-            }
-          } else {
-            // Si le champ de recherche est vide, affiche la première page des Pokémon
-            displayPage(1, cartDom, pokemons);
-
-            // Mise à jour de la pagination pour tous les Pokémon
-            const allPaginationContainer = createPagination(pokemons, 1, cartDom);
-            paginationDom.innerHTML = ''; // Efface les boutons de pagination existants
-            paginationDom.appendChild(allPaginationContainer);
-          }
-        });
-      }
     }
   });
 

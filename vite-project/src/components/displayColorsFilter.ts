@@ -1,9 +1,5 @@
-//import { fetchData } from '../api/utils.ts';
-import { getColors } from '../api/getPokemonsByColor.ts'
+import { getColors } from '../api/getPokemonsByColor.ts';
 import { getPokemonsByColor } from '../api/getPokemonsByColor.ts';
-import { getPokemonById, Pokemon } from '../api/getPokemonById.ts';
-// { getColors } from '../api/getPokemonsByColor.ts';
-//import { getPokemonsByColor } from '../api/getPokemonsByColor.ts';
 
 export async function displayColorsFilter(element: HTMLElement) {
     try {
@@ -24,14 +20,19 @@ export async function displayColorsFilter(element: HTMLElement) {
             checkbox.value = color;
             checkbox.addEventListener('change', async () => {
                 const pokemonList = await getPokemonsByColor(color);
-                //console.log(pokemonList);
-                console.log(color, "le boouton cliqué");
                 const cartDom = document.querySelector<HTMLDivElement>('.pokemonBloc');
 
                 if (cartDom) {
                     cartDom.innerHTML = "";
+                    pokemonList.forEach((pokemon) => {
+                        const pokemonElement = document.createElement('div');
+                        pokemonElement.innerHTML = pokemon.name;
+                        const pokemonImage = document.createElement('img');
+                        pokemonImage.src = pokemon.image;
+                        pokemonElement.appendChild(pokemonImage);
+                        cartDom.appendChild(pokemonElement);
+                    });
                 }
-
             });
             label.appendChild(checkbox);
             label.appendChild(document.createTextNode(color));

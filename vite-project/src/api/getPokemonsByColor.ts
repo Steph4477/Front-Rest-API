@@ -30,25 +30,16 @@ export async function getPokemonsByColor(color: string): Promise<Pokemon[]> {
 
     for (const pokemon of data.pokemon_species) {
       const pokemonData = await getPokemonById(pokemon.url.split('/').slice(-2, -1)[0]);
-      console.log(pokemonData);
       pokemonList.push(pokemonData);
     }
 
     return pokemonList;
 }
 
-/*
-export async function getPokemonsBySpecificColor(id: number): Promise<string[]> {
-    const url = `https://pokeapi.co/api/v2/pokemon-color/${id}`;
-    const apiData = await fetchData(url);
 
-    const pokemonsColor= apiData.results.map((pokemonColor: { name: string }) => pokemonColor.name);
+export async function getPokemonColorById(id: number): Promise<string> {
+    const url = `https://pokeapi.co/api/v2/pokemon-species/${id}`;
+    const data = await fetchData(url);
 
-    let pokemonsColorArray: string[] = [];
-
-    pokemonsColor.forEach((pokemonColor: string) => {
-        pokemonsColorArray.push(pokemonColor);
-    })
-
-    return pokemonsColorArray;
-}*/
+    return data.color.name;
+}

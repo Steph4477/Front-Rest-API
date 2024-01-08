@@ -1,5 +1,6 @@
 // getAllPokemons.ts
 import { fetchData } from './utils.ts';
+
 export async function getAllPokemons() {
   let nextUrl: string = 'https://pokeapi.co/api/v2/pokemon';
   const pokemons: any[] = [];

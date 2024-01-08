@@ -6,7 +6,7 @@ export async function router() {
   const appDiv = document.querySelector<HTMLDivElement>('#app');
 
   if (appDiv) {
-    if (path === '/home') {
+    if (path === '/') {
       appDiv.innerHTML = home();
     } else if (path.startsWith('/pokemon/')) {
       const pokemonId = path.split('/').pop();

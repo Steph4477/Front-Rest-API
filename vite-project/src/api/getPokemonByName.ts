@@ -6,15 +6,15 @@ interface Pokemon {
 
 }
 
-let pokemons: Pokemon[] = []; // Nous allons remplir cette liste avec la fonction getAllPokemons
+let pokemons: Pokemon[] = []; // liste à remplir avec la fonction getAllPokemons pour filtrer les résultats de la recherche
 
 export async function searchBar(searchText: string): Promise<Pokemon[]> {
   try {
-    // Récupére tous les Pokémon
+    // Récupére tous les Pokémons
     const allPokemons = await getAllPokemons();
     pokemons = allPokemons;
 
-    // Filtre les Pokémon en fonction du texte de recherche
+    // Filtre les Pokémons en fonction du texte de recherche
     const searchedPokemons = pokemons.filter(pokemon =>
       pokemon.name.toLowerCase().includes(searchText.toLowerCase())
     );
@@ -23,7 +23,7 @@ export async function searchBar(searchText: string): Promise<Pokemon[]> {
     return searchedPokemons;
   } catch (error) {
     console.error('Une erreur s\'est produite lors de la recherche', error);
-    // En cas d'erreur, retourne un tableau vide ou lancez une exception selon le cas.
+    // En cas d'erreur, retourne un tableau vide ou un message.
     return [];
   }
 }

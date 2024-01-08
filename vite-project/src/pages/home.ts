@@ -1,4 +1,4 @@
-// Dans votre fichier TypeScript home.ts
+// home.ts
 import './home.css';
 import { getAllPokemons } from '../api/getAllPokemons';
 import { displayPage } from '../components/displayPage';

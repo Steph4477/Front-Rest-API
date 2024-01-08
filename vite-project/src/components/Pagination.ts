@@ -1,4 +1,4 @@
-// Dans votre fichier TypeScript Pagination.ts
+//components/Pagination.ts
 import { createButton } from './Button';
 import { displayPage } from './displayPage';
 

@@ -1,3 +1,4 @@
+///components/displayPokemon.ts
 import { getPokemonById, Pokemon } from '../api/getPokemonById.ts';
 
 export async function displayPokemon(id: number, containerElement: HTMLElement) {

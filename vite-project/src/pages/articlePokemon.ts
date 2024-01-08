@@ -1,3 +1,4 @@
+// pages/articlePokemon.ts
 // Importe la fonction displayPokemon depuis le fichier spécifié
 import { displayPokemon } from '../components/displayPokemon.ts';
 

@@ -7,6 +7,7 @@ export interface Pokemon {
   defense: number;
   description: string;
   image: string;
+  url: string;
 }
 
 export async function getPokemonById(id: number): Promise<Pokemon> {
@@ -19,6 +20,7 @@ export async function getPokemonById(id: number): Promise<Pokemon> {
     defense: data.stats[2].base_stat,
     description: data.species.name,
     image: data.sprites.front_default,
+    url: `https://pokeapi.co/api/v2/pokemon/${id}`,
   };
   return pokemon;
 }

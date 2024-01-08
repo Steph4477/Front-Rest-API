@@ -1,6 +1,7 @@
 // home.ts
 import './home.css';
 import { getAllPokemons } from '../api/getAllPokemons';
+//import { getPokemonsByShape } from '../api/getPokemonsByShape.ts';
 import { displayPage } from '../components/displayPage';
 import { displayColorsFilter } from '../components/displayColorsFilter.ts';
 import { displayShapesFilter } from '../components/displayShapesFilter.ts';
@@ -25,9 +26,10 @@ export function home() {
             <button id="shape">Filtrer par forme</button>
           </div>
         </div>
-        <div id="poke-bloc">
+        <div>
           <div id="pagination-bloc"></div>
           <div class="pokemonBloc"></div>
+          <div class="pokemonBlocFilterShape"></div>
         </div>
       </div>
     </div>
@@ -37,7 +39,10 @@ export function home() {
     // Sélection des éléments du DOM
     const colorElement = document.querySelector<HTMLButtonElement>('#color');
     const shapeElement = document.querySelector<HTMLButtonElement>('#shape');
+
     const cartDom = document.querySelector<HTMLDivElement>('.pokemonBloc');
+    const cartDomShape = document.querySelector<HTMLDivElement>('.pokemonBlocFilterShape');
+
     const paginationDom = document.querySelector<HTMLDivElement>('#pagination-bloc');
     const searchInput = document.querySelector<HTMLInputElement>('#search-input');
 
@@ -51,16 +56,21 @@ export function home() {
     }
 
     // Vérification des éléments du DOM
-    if (cartDom && paginationDom) {
+    if (cartDom && cartDomShape && paginationDom) {
+
+      cartDom.style.display = 'flex';
+      cartDomShape.style.display = 'none';
+      
       // Récupération des Pokémon
       const pokemons = await getAllPokemons();
-
       // Affichage de la première page
       displayPage(1, cartDom, pokemons);
+      //displayPage(1, cartDomShape, pokemons);
 
       // Création de la pagination
       const paginationContainer = createPagination(pokemons, 1, cartDom);
       paginationDom.appendChild(paginationContainer);
+
 
       // Gestion de la recherche
       if (searchInput) {

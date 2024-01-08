@@ -1,5 +1,6 @@
 import { getShapes } from '../api/getPokemonsByShape.ts';
 import { getPokemonsByShape } from '../api/getPokemonsByShape.ts';
+import { displayPage } from './displayPage.ts';
 
 export async function displayShapesFilter(element: HTMLElement) {
     try {
@@ -36,19 +37,21 @@ export async function displayShapesFilter(element: HTMLElement) {
 
             formElement.appendChild(container);
 
-            checkbox.addEventListener("click", (e) => {
+            checkbox.addEventListener("click", async (e) => {
                 e.stopPropagation();
                 console.log(shape, 'Le bouton a été cliqué !');
 
-                // mettre
-                const pokemonList = getPokemonsByShape(shape);
-                console.log(pokemonList);
+                const pokemonList = await getPokemonsByShape(shape);
+
                 const cartDom = document.querySelector<HTMLDivElement>('.pokemonBloc');
+                const cartDomShape = document.querySelector<HTMLDivElement>('.pokemonBlocFilterShape');
 
-                if (cartDom) {
-                    cartDom.innerHTML = "";
+                if (cartDom && cartDomShape) {
+                    cartDom.style.display = 'none';
+                    cartDomShape.style.display = 'flex';
+
+                    displayPage(1, cartDomShape, pokemonList);
                 }
-
             });
         });
 

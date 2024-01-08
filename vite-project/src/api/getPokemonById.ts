@@ -1,3 +1,5 @@
+import { fetchData } from './utils';
+
 export interface Pokemon {
   name: string;
   type: string;
@@ -8,8 +10,7 @@ export interface Pokemon {
 }
 
 export async function getPokemonById(id: number): Promise<Pokemon> {
-  const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
-  const data = await response.json();
+  const data = await fetchData(`https://pokeapi.co/api/v2/pokemon/${id}`);
 
   const pokemon: Pokemon = {
     name: data.name,
@@ -20,5 +21,4 @@ export async function getPokemonById(id: number): Promise<Pokemon> {
     image: data.sprites.front_default,
   };
   return pokemon;
-  
 }

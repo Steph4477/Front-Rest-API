@@ -1,9 +1,10 @@
-//import { fetchData } from '../api/utils.ts';
-import { getColors } from '../api/getPokemonsByColor.ts'
-import { getPokemonsByColor } from '../api/getPokemonsByColor.ts';
-import { getPokemonById, Pokemon } from '../api/getPokemonById.ts';
-// { getColors } from '../api/getPokemonsByColor.ts';
-//import { getPokemonsByColor } from '../api/getPokemonsByColor.ts';
+
+
+
+
+import { getColors, getPokemonsByColor } from '../api/getPokemonsByColor';
+
+import {displayPage} from './displayPage'
 
 export async function displayColorsFilter(element: HTMLElement) {
     try {
@@ -12,32 +13,45 @@ export async function displayColorsFilter(element: HTMLElement) {
         const filterColorTitle = document.createElement('h2');
         filterColorTitle.innerHTML = "Couleur";
         element.appendChild(filterColorTitle);
-        colors.forEach(async (color: string) => {
+
+        colors.forEach((color: string) => {
             const container = document.createElement('div');
             container.style.display = 'flex';
+
             const checkboxContainer = document.createElement('div');
             checkboxContainer.style.marginRight = '10px';
             const label = document.createElement('label');
             const checkbox = document.createElement('input');
+
             checkbox.type = 'checkbox';
-            checkbox.name = color;
+            checkbox.name = 'colors';
             checkbox.value = color;
-            checkbox.addEventListener('change', async () => {
-                const pokemonList = await getPokemonsByColor(color);
-                //console.log(pokemonList);
-                console.log(color, "le boouton cliqué");
-                const cartDom = document.querySelector<HTMLDivElement>('.pokemonBloc');
 
-                if (cartDom) {
-                    cartDom.innerHTML = "";
-                }
-
-            });
             label.appendChild(checkbox);
-            label.appendChild(document.createTextNode(color));
             checkboxContainer.appendChild(label);
+
+            const colorInfo = document.createElement('div');
+            colorInfo.textContent = color;
+
             container.appendChild(checkboxContainer);
+            container.appendChild(colorInfo);
             formElement.appendChild(container);
+
+            checkbox.addEventListener('change', async (e) => {
+                e.stopPropagation();
+                console.log(color, "a été cliqué");
+
+                const pokemonList = await getPokemonsByColor(color);
+
+                const cartDom = document.querySelector<HTMLDivElement>('.pokemonBloc');
+                const cartDomColor = document.querySelector<HTMLDivElement>('.pokemonBlocFilterColor');
+                
+                if (cartDom && cartDomColor){
+                    cartDom.style.display = 'none';
+                    cartDomColor.style.display = 'flex';
+                    displayPage(1, cartDomColor, pokemonList);
+                }
+            });
         });
         element.appendChild(formElement);
     } catch (error) {

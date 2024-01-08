@@ -30,6 +30,7 @@ export function home() {
           <div id="pagination-bloc"></div>
           <div class="pokemonBloc"></div>
           <div class="pokemonBlocFilterShape"></div>
+          <div class = "pokemonBlocFilterColor"></div>
         </div>
       </div>
     </div>
@@ -39,6 +40,7 @@ export function home() {
     // Sélection des éléments du DOM
     const colorElement = document.querySelector<HTMLButtonElement>('#color');
     const shapeElement = document.querySelector<HTMLButtonElement>('#shape');
+const cartDomColor = document.querySelector<HTMLDivElement>('.pokemonBlocFilterColor');
 
     const cartDom = document.querySelector<HTMLDivElement>('.pokemonBloc');
     const cartDomShape = document.querySelector<HTMLDivElement>('.pokemonBlocFilterShape');
@@ -50,17 +52,19 @@ export function home() {
     if (colorElement) {
       displayColorsFilter(colorElement);
     }
+    
 
     if (shapeElement) {
       displayShapesFilter(shapeElement);
     }
 
     // Vérification des éléments du DOM
-    if (cartDom && cartDomShape && paginationDom) {
+    if (cartDom && cartDomColor && cartDomShape && paginationDom) {
 
       cartDom.style.display = 'flex';
+      cartDomColor.style.display = 'none';
       cartDomShape.style.display = 'none';
-      
+
       // Récupération des Pokémon
       const pokemons = await getAllPokemons();
       // Affichage de la première page

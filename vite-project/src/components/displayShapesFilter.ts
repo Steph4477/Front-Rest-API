@@ -59,6 +59,6 @@ export async function displayShapesFilter(element: HTMLElement) {
 
 
     } catch (error) {
-
+        console.error(error);
     }
 }

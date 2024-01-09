@@ -16,7 +16,7 @@ export async function searchBar(searchText: string): Promise<Pokemon[]> {
 
     // Filtre les Pokémons en fonction du texte de recherche
     const searchedPokemons = pokemons.filter(pokemon =>
-      pokemon.name.toLowerCase().includes(searchText.toLowerCase())
+      pokemon.name.toLowerCase().startsWith(searchText.toLowerCase())
     );
 
     // Retourne les résultats de la recherche

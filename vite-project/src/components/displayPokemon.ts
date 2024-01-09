@@ -1,4 +1,5 @@
 ///components/displayPokemon.ts
+import '../pages/home.css';
 import { getPokemonById, Pokemon } from '../api/getPokemonById.ts';
 
 export async function displayPokemon(id: number, containerElement: HTMLElement) {
@@ -6,9 +7,7 @@ export async function displayPokemon(id: number, containerElement: HTMLElement) 
     const url = `https://pokeapi.co/api/v2/pokemon-species/${id}`;
     const response = await fetch(url);
     const data = await response.json();
-    console.log(url);
     const pokemon: Pokemon = await getPokemonById(id);
-    console.log(pokemon);
 
     // Création de l'élément div pour la carte Pokémon
     const divElement = document.createElement('div');
@@ -16,7 +15,7 @@ export async function displayPokemon(id: number, containerElement: HTMLElement) 
 
     // Création de l'élément d'image et ajout à divElement
     const imgElement = document.createElement('img');
-    imgElement.src = pokemon.image;
+    imgElement.src = pokemon.imageArtwork;
     imgElement.alt = pokemon.name; // Ajout d'un attribut alt à l'image
     divElement.appendChild(imgElement);
 
@@ -41,10 +40,25 @@ export async function displayPokemon(id: number, containerElement: HTMLElement) 
 
     const attackElement = document.createElement('li');
     attackElement.textContent = `Attaque: ${pokemon.attack}`;
+
+    // création de la jauge de progression pour l'attaque
+    const attackProgress = document.createElement('progress');
+    attackProgress.className = 'progressAttack';
+    attackProgress.value = Number(pokemon.attack);
+    attackProgress.max = 255;
+    attackElement.appendChild(attackProgress);
     ulElement.appendChild(attackElement);
 
     const defenseElement = document.createElement('li');
     defenseElement.textContent = `Défense: ${pokemon.defense}`;
+
+    //creation de la jauge de progression pour la défense
+    const defenseProgress = document.createElement('progress');
+    defenseProgress.className = 'progressDefense';
+    defenseProgress.value = Number(pokemon.defense);
+    defenseProgress.max = 255;
+    defenseElement.appendChild(defenseProgress);
+
     ulElement.appendChild(defenseElement);
 
     const descriptionElement = document.createElement('li');

@@ -24,16 +24,26 @@ export async function displayPage(page: number, container: HTMLElement, pokemons
     // Nettoie le contenu existant du conteneur
     container.innerHTML = '';
 
+
+    const cards = pokemonsOnPage.map((pokemon) => createPokemonCard(pokemon));
+    console.log(cards);
+
     // Boucle à travers les Pokémon de la page et crée une carte pour chacun
     for (const pokemon of pokemonsOnPage) {
         try {
-            // Crée une carte Pokémon en attendant la résolution de la promesse
-            const card = await createPokemonCard(pokemon);
+            // // Crée une carte Pokémon en attendant la résolution de la promesse
+            // const card = await createPokemonCard(pokemon);
 
-            // Vérifie si la carte a été créée avec succès et l'ajoute au conteneur
-            if (card) {
-                container.appendChild(card);
-            }
+            // // Vérifie si la carte a été créée avec succès et l'ajoute au conteneur
+            // if (card) {
+            //     container.appendChild(card);
+            // }
+            createPokemonCard(pokemon).then((card) => {
+                // Vérifie si la carte a été créée avec succès et l'ajoute au conteneur
+                if (card) {
+                    container.appendChild(card);
+                }
+            });
         } catch (error) {
             // Gère les erreurs lors de la création de la carte pour un Pokémon spécifique
             console.error(`Failed to create card for pokemon: ${pokemon.name}`, error);

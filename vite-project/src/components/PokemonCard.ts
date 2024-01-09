@@ -1,6 +1,6 @@
 // components/PokemonCard.ts
 import { fetchData } from '../api/utils';
-import { getPokemonColorById } from '../api/getPokemonsByColor';
+import { getPokemonsColorById } from '../api/getPokemonsColorById.ts';
 import { Pokemon } from '../api/getPokemonById.ts'
 
 function capitalizeFirstLetter(str: string) {
@@ -22,7 +22,7 @@ export async function createPokemonCard(pokemon: Pokemon) {
     }
 
     // Obtenir la couleur du Pokémon
-    const pokemonBorderColor = await getPokemonColorById(pokemonDetail.id);
+    const pokemonBorderColor = await getPokemonsColorById(pokemonDetail.id);
 
 
     // Créer une constante pour le filtre de luminosité

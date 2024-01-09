@@ -1,8 +1,7 @@
 import './home.css';
 import { getAllPokemons } from '../api/getAllPokemons';
 import { displayPage } from '../components/displayPage';
-import { displayColorsFilter } from '../components/displayColorsFilter.ts';
-import { displayShapesFilter } from '../components/displayShapesFilter.ts';
+import { displayFilters } from '../components/displayFilters.ts';
 import { searchPokemon } from '../components/searchPokemon.ts';
 import { createPagination } from '../components/Pagination';
 
@@ -17,16 +16,13 @@ export function home() {
       <div id="body-bloc">
         <div id="filters">
           <div id="filters-bloc">
-            <button id="color">Filtrer par couleur</button>
-          </div>
-          <div id="filters-bloc">
-            <button id="shape">Filtrer par forme</button>
+            <button id="filter"></button>
           </div>
         </div>
         <div>
           <div id="pagination-bloc"></div>
           <div class="pokemonBloc"></div>
-          <div class="pokemonBlocFilterShape"></div>
+          <div class = "pokemonBlocFilter"></div>
           <div class = "pokemonBlocFilterColor"></div>
         </div>
       </div>
@@ -35,36 +31,28 @@ export function home() {
 
   document.addEventListener('DOMContentLoaded', async () => {
     // Sélection des éléments du DOM
-    const colorElement = document.querySelector<HTMLButtonElement>('#color');
-    const shapeElement = document.querySelector<HTMLButtonElement>('#shape');
-const cartDomColor = document.querySelector<HTMLDivElement>('.pokemonBlocFilterColor');
-
+    const filters = document.querySelector<HTMLButtonElement>('#filter');
+    
     const cartDom = document.querySelector<HTMLDivElement>('.pokemonBloc');
-    const cartDomShape = document.querySelector<HTMLDivElement>('.pokemonBlocFilterShape');
-
+    const cartDomFilter = document.querySelector<HTMLDivElement>('.pokemonBlocFilter');
+    
     const paginationDom = document.querySelector<HTMLDivElement>('#pagination-bloc');
     const searchInput = document.querySelector<HTMLElement>('#search-input');
 
-    // Affichage des filtres de couleur et de forme
-    if (colorElement) {
-      displayColorsFilter(colorElement);
-    }
-    
-
-    if (shapeElement) {
-      displayShapesFilter(shapeElement);
-    }
+    if (filters) {
+      displayFilters();
+    } 
 
     if (searchInput) {
       searchPokemon(searchInput);
     }
 
     // Vérification des éléments du DOM
-    if (cartDom && cartDomColor && cartDomShape && paginationDom) {
+    if (cartDom && cartDomFilter && paginationDom) {
 
       cartDom.style.display = 'flex';
-      cartDomColor.style.display = 'none';
-      cartDomShape.style.display = 'none';
+      cartDomFilter.style.display = 'none';
+
 
       // Récupération des Pokémon
       const pokemons = await getAllPokemons();

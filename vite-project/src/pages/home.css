@@ -33,7 +33,7 @@ body {
     margin: 5vh;
   }
   
-  .pokemonBloc, .pokemonBlocFilterColor, .pokemonBlocFilterShape {
+  .pokemonBloc, .pokemonBlocFilter {
     display: flex;
     flex-wrap: wrap;
     margin-top: 20px;

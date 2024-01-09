@@ -1,7 +1,7 @@
 // pages/articlePokemon.ts
 // Importe la fonction displayPokemon depuis le fichier spécifié
 import { displayPokemon } from '../components/displayPokemon.ts';
-import { getPokemonById, Pokemon } from '../api/getPokemonById.ts';
+//import { getPokemonById, Pokemon } from '../api/getPokemonById.ts';
 
 
 // Définit une fonction asynchrone articlePokemon qui prend un argument pokemonId sous forme de chaîne de caractères

@@ -1,18 +1,13 @@
 // pages/articlePokemon.ts
 // Importe la fonction displayPokemon depuis le fichier spécifié
 import { displayPokemon } from '../components/displayPokemon.ts';
-//import { getPokemonById, Pokemon } from '../api/getPokemonById.ts';
-
 
 // Définit une fonction asynchrone articlePokemon qui prend un argument pokemonId sous forme de chaîne de caractères
 export async function articlePokemon(pokemonId: string) {
-  // Obtenez les détails du Pokémon
-  // Remove the declaration of 'pokemon' since it is already declared as a function parameter
-  //await getPokemonById(Number(pokemonId));
 
   // Contenu HTML de la page
   const content = `
-    <h1>À propos de </h1>
+    <h1>À propos d'un Pokémon</h1>
     <div id="fiche-poke">
       <p>Fiche Pokémon</p>
     </div>

@@ -1,27 +1,36 @@
-import { getPokemonsByFilter} from '../api/getPokemonsByFilter.ts';
+/*import { getPokemonsByFilter} from '../api/getPokemonsByFilter.ts';
 import { displayPage } from './displayPage.ts';
+import { createPagination } from '../components/Pagination';
 
-export async function createFilterContent(filter: string, filterElement: string, index: number) {
+export async function createFilterContent(filter: string, filterElement: string, clickCount: number) {
     
     try {
-        console.log(filter, 'Le bouton a été cliqué !', index);
 
         const pokemonList = await getPokemonsByFilter(filter, filterElement);
 
-        console.log("test 1");
-        console.log(pokemonList);
-
         const cartDom = document.querySelector<HTMLDivElement>('.pokemonBloc');
         const cartDomFilter = document.querySelector<HTMLDivElement>('.pokemonBlocFilter');
+        const paginationDom = document.querySelector<HTMLDivElement>('#pagination-bloc');
 
-        if (cartDom && cartDomFilter) {
-            cartDom.style.display = 'none';
-            cartDomFilter.style.display = 'flex';
+        if (cartDom && cartDomFilter && paginationDom) {
+/*
+            if (clickCount % 2 !== 0) {
 
-            displayPage(1, cartDomFilter, pokemonList);
+                cartDom.style.display = 'none';
+                cartDomFilter.style.display = 'flex';
+
+                displayPage(1, cartDomFilter, pokemonList);
+
+                const paginationContainer = createPagination(pokemonList, 1, cartDomFilter);
+                paginationDom.appendChild(paginationContainer);
+
+            } else {
+
+                cartDom.style.display = 'flex';
+                cartDomFilter.style.display = 'none';
+            }
         }
     } catch (error){
         console.log(error);
     }
-    
-}
+}*/

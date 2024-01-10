@@ -1,117 +1,62 @@
 body {
-  margin: 0;
-  min-width: 320px;
-  min-height: 100vh;
-}
+    margin: 0;
+    min-width: 320px;
+    min-height: 100vh;
+  }
+  
+  #app {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
 
-#app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-}
+  h1 {
+    text-align: center;
+  }
+  
+  #search-bar {
+    display: flex;
+    justify-content: center;
+    margin: 5vh;
+  }
 
-h1 {
-  text-align: center;
-}
+  #body-bloc {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    
+  }
+  
+  #filters-bloc {
+    display: flex;
+    flex-direction: row;
+    margin: 5vh;
+  }
+  
+  .pokemonBloc, .pokemonBlocFilter {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 20px;
+    gap: 20px;
+    
+  }
 
-#search-bar {
-  display: flex;
-  justify-content: center;
-  margin: 5vh;
-}
+  article {
+    width: 150px;
+    border: 1px solid black;
+    padding: 5px 20px 5px 20px;
+    border-radius: 20px;
+    background-color: rgb(239, 243, 243);
+    text-align: center;
+    transition: transform 0.5s ease-in-out;
+  }
+  
+  article:hover {
+    transform: scale(1.23);
+  }
 
-#body-bloc {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-
-}
-
-#filters-bloc {
-  display: flex;
-  flex-direction: row;
-  margin: 5vh;
-}
-
-.pokemonBloc {
-  display: flex;
-  flex-wrap: wrap;
-  margin-top: 20px;
-  gap: 20px;
-
-}
-
-article {
-
-  width: 150px;
-  border: 1px solid black;
-  padding: 5px 20px 5px 20px;
-  border-radius: 20px;
-  background-color: rgb(239, 243, 243);
-  transition: transform 0.5s ease-in-out;
-}
-
-article:hover {
-  transform: scale(1.23);
-}
-
-a {
-  text-decoration: none;
-  color: black;
-  font-family: sans-serif;
-}
-
-.pokemon-gif,
-.pokemon-image {
-  margin-left: 20px;
-}
-
-.progressAttack {
-  /* Chrome */
-  -webkit-appearance: none;
-  appearance: none;
-  height: 15px;
-  border: 1px solid black;
-  margin-left: 20px;
-}
-
-.progressAttack::-webkit-progress-bar {
-  /* Chrome */
-  background: white;
-}
-
-.progressAttack::-webkit-progress-value {
-  /* Chrome */
-  background: red;
-}
-
-.progressAttack::-moz-progress-bar {
-  /* Firefox */
-  background: red;
-}
-
-.progressDefense {
-  /* Chrome */
-  -webkit-appearance: none;
-  appearance: none;
-  height: 15px;
-  border: 1px solid black;
-  margin-left: 20px;
-  /*transform: rotate(-90deg) translate(-50%, 50%);
-  transform-origin: top;*/
-}
-
-.progressDefense::-webkit-progress-bar {
-  /* Chrome */
-  background: white;
-}
-
-.progressDefense::-webkit-progress-value {
-  /* Chrome */
-  background: green;
-}
-
-.progressDefense::-moz-progress-bar {
-  /* Firefox */
-  background: green;
-}
+  a {
+    text-decoration: none;
+    color: black;
+    font-family: sans-serif;
+  }

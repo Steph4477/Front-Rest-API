@@ -20,10 +20,11 @@ export function home() {
           </div>
         </div>
         <div>
-          <div id="pagination-bloc"></div>
+          
           <div class="pokemonBloc"></div>
           <div class = "pokemonBlocFilter"></div>
           <div class = "pokemonBlocFilterColor"></div>
+          <div id="pagination-bloc"></div>
         </div>
       </div>
     </div>
@@ -53,12 +54,10 @@ export function home() {
       cartDom.style.display = 'flex';
       cartDomFilter.style.display = 'none';
 
-
       // Récupération des Pokémon
       const pokemons = await getAllPokemons();
       // Affichage de la première page
       displayPage(1, cartDom, pokemons);
-      //displayPage(1, cartDomShape, pokemons);
 
       // Création de la pagination
       const paginationContainer = createPagination(pokemons, 1, cartDom);

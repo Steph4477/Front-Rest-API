@@ -35,6 +35,6 @@ export async function displayPage(page: number, container: HTMLElement, pokemons
             });
         } catch (error) {
             // Gère les erreurs lors de la création de la carte pour un Pokémon spécifique
-            console.error(`Failed to create card for pokemon: ${pokemon.name}`, error);
+            console.error(`Failed to create card for pokemon: ${pokemons}`, error);
         }
 }

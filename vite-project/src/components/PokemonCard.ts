@@ -1,21 +1,19 @@
 // components/PokemonCard.ts
 import { fetchData } from '../api/utils';
-import { getPokemonsColorById } from '../api/getPokemonsColorById.ts';
-import { Pokemon } from '../api/getPokemonById.ts'
+import { getPokemonsColorById } from '../api/getPokemonsColorById';
+import '../pages/home.css';
 
 function capitalizeFirstLetter(str: string) {
     return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
-export async function createPokemonCard(pokemon: Pokemon) {
-    
+export async function createPokemonCard(pokemon: any) {
     if (!pokemon) {
         console.error('Pokemon data is missing');
         return;
     }
 
     const pokemonDetail = await fetchData(pokemon.url);
-
     if (!pokemonDetail) {
         console.error(`Pokemon data is missing for ${pokemon.name}`);
         return;
@@ -23,21 +21,13 @@ export async function createPokemonCard(pokemon: Pokemon) {
 
     // Obtenir la couleur du Pokémon
     const pokemonBorderColor = await getPokemonsColorById(pokemonDetail.id);
-
-
-    // Créer une constante pour le filtre de luminosité
-    const brightnessFilter = 'brightness(150%)';
-
     const card = document.createElement('article');
     card.className = 'pokemon-card';
 
-    // Utiliser un filtre pour rendre la couleur de fond plus claire
-    card.style.background = `${pokemonBorderColor} ${brightnessFilter}`;
 
     // Définir la couleur de la bordure de la carte en fonction du Pokémon
     card.style.border = `5px solid ${pokemonBorderColor}`;
-
-    // lien du pokemon
+    
     const link = document.createElement('a');
     link.href = `http://localhost:5173/pokemon/${pokemonDetail.id}`;
     card.appendChild(link);
@@ -45,29 +35,39 @@ export async function createPokemonCard(pokemon: Pokemon) {
     const name = document.createElement('h2');
     name.textContent = capitalizeFirstLetter(pokemonDetail.name);
     link.appendChild(name);
-
-    const image = document.createElement('img');
-    image.src = pokemonDetail.sprites.front_default;
-    image.alt = 'Image du Pokémon ' + capitalizeFirstLetter(pokemonDetail.name);
-    
-    link.appendChild(image);
-
+   
+    // Création du gif dans le dom
     const imageGiff = document.createElement('img');
+    imageGiff.className = 'pokemon-gif';
+    imageGiff.alt = 'Image animée du Pokémon ' + capitalizeFirstLetter(pokemonDetail.name);
+    imageGiff.style.display = 'none';
+
+    // Création du canvas du giff pour l'image statique du dom
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d');
+    canvas.className = 'pokemon-image';
+
+    // Dessin de l'image statique sur le canvas une fois que le gif est chargé
+    imageGiff.onload = () => {
+        ctx?.drawImage(imageGiff, 0, 0);
+        link.appendChild(canvas);
+    };
+
+    // Définition de la source du gif
     imageGiff.src = pokemonDetail.sprites.other.showdown.front_default;
-    imageGiff.style.display = 'none'; // Cacher l'image Gif par défaut
-    imageGiff.style.marginLeft = '20px'; // Fix the property name and syntax
     link.appendChild(imageGiff);
 
+    // Affichage du gif lors du survol de la souris
     card.addEventListener('mouseover', () => {
-        image.style.display = 'none'; // Cacher l'image normale
-        imageGiff.style.display = 'block'; // Afficher l'image Gif
+        canvas.style.display = 'none';
+        imageGiff.style.display = 'block';
     });
 
+    // Affichage de l'image statique lorsque la souris ne survole pas
     card.addEventListener('mouseout', () => {
-        image.style.display = 'block'; // Afficher l'image normale
-        imageGiff.style.display = 'none'; // Cacher l'image Gif
+        canvas.style.display = 'block';
+        imageGiff.style.display = 'none';
     });
-
 
     return card;
 }

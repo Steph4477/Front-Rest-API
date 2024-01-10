@@ -16,7 +16,7 @@ export async function displayPokemon(id: number, containerElement: HTMLElement) 
 
     // Création de l'élément d'image et ajout à divElement
     const imgElement = document.createElement('img');
-    imgElement.src = pokemon.image;
+    imgElement.src = pokemon.imageArtwork;
     imgElement.alt = pokemon.name; // Ajout d'un attribut alt à l'image
     divElement.appendChild(imgElement);
 

@@ -20,10 +20,11 @@ export function home() {
           </div>
         </div>
         <div>
-          <div id="pagination-bloc"></div>
+          
           <div class="pokemonBloc"></div>
           <div class = "pokemonBlocFilter"></div>
           <div class = "pokemonBlocFilterColor"></div>
+          <div id="pagination-bloc"></div>
         </div>
       </div>
     </div>

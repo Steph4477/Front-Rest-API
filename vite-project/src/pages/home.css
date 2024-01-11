@@ -40,14 +40,7 @@ body {
     gap: 20px;
     
   }
-  .active {
-    background-color: blue;
-    color: white; /* Changez la couleur du texte en blanc pour une meilleure visibilité */
-  }
-  .pagination-button {
-    background-color: gray;
-    color: black; /* Changez la couleur du texte en noir pour une meilleure visibilité */
-  }
+  
   article {
     width: 20%;
     text-align: center;
@@ -70,9 +63,29 @@ body {
     text-decoration: none;
     color: black;
     font-family: sans-serif;
-
   }
-  #pagination-bloc {
-   
+  #pagination-bloc {  
     margin-top: 5vh;    
+  }
+  .pagination-button {
+    /* Style par défaut pour les boutons de pagination */
+    color: black;
+    background-color: white;
+    border: 5px solid #ddd;
+    padding: 8px 16px;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  .pagination-button.active {
+    /* Style pour le bouton actif */
+    background-color: #4CAF50;
+    color: white;
+  }
+
+  .pagination-container {
+    /* Style pour le conteneur de pagination */
+    display: flex;
+    flex-wrap: wrap;
+    
   }

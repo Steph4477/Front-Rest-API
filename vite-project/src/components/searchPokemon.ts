@@ -1,7 +1,6 @@
 import { searchBar } from '../api/getPokemonByName';
 import { getAllPokemons } from '../api/getAllPokemons';
 import { createPokemonCard } from './PokemonCard';
-import { createPagination } from './Pagination';
 
 export async function searchPokemon(element: HTMLElement) {
 
@@ -17,6 +16,8 @@ export async function searchPokemon(element: HTMLElement) {
       if (searchInput && cartDom && paginationDom) {
         searchInput.addEventListener('input', async (event) => {
           const searchText = (event.target as HTMLInputElement).value.trim();
+
+          paginationDom.style.display ='none';
 
           let searchedPokemons;
 
@@ -35,10 +36,6 @@ export async function searchPokemon(element: HTMLElement) {
                 cartDom.appendChild(card);
               }
             }
-
-            const searchPaginationContainer = createPagination(searchedPokemons, 1, cartDom);
-            paginationDom.innerHTML = '';
-            paginationDom.appendChild(searchPaginationContainer);
           }
         });
       }

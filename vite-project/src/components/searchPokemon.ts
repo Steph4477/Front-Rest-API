@@ -2,6 +2,8 @@ import { searchBar } from '../api/getPokemonByName';
 import { getAllPokemons } from '../api/getAllPokemons';
 import { createPokemonCard } from './PokemonCard';
 
+/* Ce bloc de code gère la recherche de Pokemons par nom */
+
 export async function searchPokemon(element: HTMLElement) {
 
   try {

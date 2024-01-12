@@ -1,4 +1,7 @@
 /// api/utils.ts
+
+/* Ce bloc de code traite les appels à l'API*/
+
 export async function fetchData(url: string): Promise<any> {
   try {
     const response = await fetch(url);

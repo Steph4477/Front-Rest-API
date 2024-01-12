@@ -1,5 +1,8 @@
 import { createFilter } from './createFilters.ts';
 
+/* Ce bloc de code fait appel à la fonction createFilters et affiche
+des filtres personnalisé */
+
 export async function displayFilters() {
     try {
         const filterDomShape = document.querySelector<HTMLButtonElement>('#filter-shape');

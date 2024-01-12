@@ -15,16 +15,15 @@ export function home() {
       </div>
       <div id="body-bloc">
         <div id="filters">
-          <div id="filters-bloc">
-            <button id="filter"></button>
-          </div>
+          <button id="filter-shape"></button>
+          <button id="filter-color"></button>
+          <button id="filter-habitat"></button>
         </div>
         <div>
-          
           <div class="pokemonBloc"></div>
           <div class = "pokemonBlocFilter"></div>
-          <div class = "pokemonBlocFilterColor"></div>
           <div id="pagination-bloc"></div>
+          <div id="pagination-bloc-filter"></div>
         </div>
       </div>
     </div>
@@ -32,15 +31,18 @@ export function home() {
 
   document.addEventListener('DOMContentLoaded', async () => {
     // Sélection des éléments du DOM
-    const filters = document.querySelector<HTMLButtonElement>('#filter');
+    const filterShape = document.querySelector<HTMLButtonElement>('#filter-shape');
+    const filterColor = document.querySelector<HTMLButtonElement>('#filter-color');
+    const filterHabitat = document.querySelector<HTMLButtonElement>('#filter-habitat');
     
     const cartDom = document.querySelector<HTMLDivElement>('.pokemonBloc');
     const cartDomFilter = document.querySelector<HTMLDivElement>('.pokemonBlocFilter');
     
     const paginationDom = document.querySelector<HTMLDivElement>('#pagination-bloc');
+    const paginationFilterDom = document.querySelector<HTMLDivElement>('#pagination-bloc-filter');
     const searchInput = document.querySelector<HTMLElement>('#search-input');
 
-    if (filters) {
+    if (filterShape && filterColor && filterHabitat && paginationFilterDom) {
       displayFilters();
     } 
 
